@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { MainComponentComponent } from './main-component/main-component.componen
 import { FiltersComponentComponent } from './filters-component/filters-component.component';
 import { ProductsComponentComponent } from './products-component/products-component.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -36,7 +40,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatMenuModule,
     MatGridListModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    InMemoryWebApiModule.forRoot(DataService)
   ],
   providers: [],
   bootstrap: [AppComponent]

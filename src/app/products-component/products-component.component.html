@@ -1,50 +1,15 @@
 <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="products-container">
-  <div class="product">
+  <div class="product" *ngFor="let product of products">
     <mat-card>
         <mat-card-title>
-          titulo
+          {{ product.name }}
         </mat-card-title>
         <mat-card-content>
-          <span>$123</span><br>
-          <span>No Disponible</span><br>
-          <span>Quedan 33 en stock</span><br>
+          <span>{{ product.price }}</span><br>
+          <span *ngIf="product.availability">Disponible</span><br *ngIf="product.availability">
+          <span *ngIf="!product.availability">No Disponible</span><br *ngIf="!product.availability">
+          <span>Quedan {{ product.quantity }} en stock</span><br>
         </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="product">
-    <mat-card>
-      <mat-card-title>
-        titulo
-      </mat-card-title>
-      <mat-card-content>
-        <span>$123</span><br>
-        <span>No Disponible</span><br>
-        <span>Quedan 33 en stock</span><br>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="product">
-    <mat-card>
-        <mat-card-title>
-          titulo
-        </mat-card-title>
-        <mat-card-content>
-          <span>$123</span><br>
-          <span>No Disponible</span><br>
-          <span>Quedan 33 en stock</span><br>
-        </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="product">
-    <mat-card>
-      <mat-card-title>
-        titulo
-      </mat-card-title>
-      <mat-card-content>
-        <span>$123</span><br>
-        <span>No Disponible</span><br>
-        <span>Quedan 33 en stock</span><br>
-      </mat-card-content>
     </mat-card>
   </div>
 </div>
