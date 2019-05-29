@@ -3,6 +3,7 @@ import { ProductsService } from '../products.service';
 import { Product, ProductFilters, ProductSorts } from '../product.model';
 import { ProductsComunicationService } from '../products-comunication.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-products-component',
   templateUrl: './products-component.component.html',
@@ -16,7 +17,8 @@ export class ProductsComponentComponent implements OnInit, OnDestroy {
 
   constructor(
     private productsService: ProductsService,
-    private productsComunicationService: ProductsComunicationService
+    private productsComunicationService: ProductsComunicationService,
+    protected router: Router
     ) { }
 
   async ngOnInit() {
@@ -33,19 +35,12 @@ export class ProductsComponentComponent implements OnInit, OnDestroy {
       this.changeProducts();
     });
 
-    // this.productsService.getProduct('58b5a5b1b6b6c7aacc25b3fb').subscribe((data: Product) => {
-    //   console.log('uno:', data);
-    // });
   }
 
   async changeProducts() {
-    console.log('filtros: ', this.productFilters);
-    console.log('sorts: ', this.productSorts);
     this.products = await this.productsService.getProducts().toPromise();
-    // console.log('all products: ', this.products);
     this.sortProducts();
     this.filterProducts();
-    // this.products = this.products.filter(p => p.name === 'dolor');
   }
 
   sortProducts() {
@@ -131,13 +126,9 @@ export class ProductsComponentComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
-  // multiFilter(array, filters) {
-  //   return array.filter(o =>
-  //       Object.keys(filters).every(k =>
-  //           [].concat(filters[k]).some(v => o[k].includes(v))));
-  // }
+  goTo(product: Product) {
+    this.router.navigate(['product/' + product.id ]);
+  }
 
   ngOnDestroy() {}
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/product.model';
 
 @Component({
   selector: 'app-product-edit',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductEditComponent implements OnInit {
 
-  constructor() { }
+  product: Product;
+
+  constructor(private route: ActivatedRoute,
+              protected router: Router) { }
 
   ngOnInit() {
+    // console.log(this.route.snapshot.data.product);
+    this.product = this.route.snapshot.data.product;
+    console.log(this.product);
   }
 
+  back() {
+    this.router.navigate(['/']);
+  }
 }

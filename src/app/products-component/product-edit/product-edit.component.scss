@@ -1,3 +1,23 @@
 main {
   padding: 20px;
 }
+
+mat-card {
+  width: 500px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-content {
+  padding-top: 5px;
+}
+
+.form-buttons {
+  min-width: 100px;
+}
+
+.save-button {
+  background-color: #0393f9;
+}

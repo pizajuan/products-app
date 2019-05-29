@@ -1,5 +1,35 @@
 <main class="content">
-	<div fxLayout="row" fxLayoutAlign="start center" class="content">
-		<div>Aqui va en producto</div>
-	</div>
+	<form (ngSubmit)="save()" fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card #form="ngForm" ngForm>
+      <mat-card-title>Product</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-form-field>
+          <input [(ngModel)]="product.name" matInput placeholder="Name" name="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="product.price" matInput placeholder="Price" name="price" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="product.quantity" matInput placeholder="Price" name="quantity" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Availability</mat-label>
+          <mat-select [(ngModel)]="product.availability" name="availability" required>
+            <mat-option [value]=true>Available</mat-option>
+            <mat-option [value]=false>Unavailable</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-raised-button type="submit" class="form-buttons save-button">
+              SAVE
+            </button>
+            <a mat-raised-button color="warn" (click)="back()" class="form-buttons">CANCEL</a>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+	</form>
 </main>

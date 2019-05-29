@@ -16,6 +16,7 @@ import {  MatToolbarModule,
           MatInputModule,
           MatButtonModule,
           MatSelectModule,
+          MatDividerModule,
           MatDrawerContainer,
           MatDrawerContent,
           MatDrawer } from '@angular/material';
@@ -57,6 +58,7 @@ import { ProductEditComponent } from './products-component/product-edit/product-
     MatButtonModule,
     FormsModule,
     MatSelectModule,
+    MatDividerModule,
     InMemoryWebApiModule.forRoot(DataService)
   ],
   providers: [],

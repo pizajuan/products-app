@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" class="products-container">
   <div class="product" *ngFor="let product of products">
-    <mat-card>
+    <mat-card (click)="goTo(product)" class="clickeable">
         <mat-card-title>
           {{ product.name }}
         </mat-card-title>
