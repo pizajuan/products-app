@@ -26,7 +26,7 @@
         <input [(ngModel)]="productFilters.name" matInput placeholder="Name">
       </mat-form-field>
 
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productFilters.name">
         <button mat-raised-button (click)="addFilter('name')">Ok</button>
       </div>
     </mat-expansion-panel>
@@ -48,7 +48,7 @@
           <mat-option [value]='">"'>greater than</mat-option>
         </mat-select>
       </mat-form-field>
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productFilters.price.number && productFilters.price.range">
         <button mat-raised-button (click)="addFilter('price')">Ok</button>
       </div>
 
@@ -72,7 +72,7 @@
         </mat-select>
       </mat-form-field>
 
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productFilters.quantity.number && productFilters.quantity.range">
           <button mat-raised-button (click)="addFilter('quantity')">Ok</button>
       </div>
     </mat-expansion-panel>
@@ -92,7 +92,7 @@
         </mat-select>
       </mat-form-field>
 
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productFilters.availability != undefined">
         <button mat-raised-button (click)="addFilter('availability')">Ok</button>
       </div>
     </mat-expansion-panel>
@@ -115,24 +115,6 @@
 </div>
 <div fxLayout="row" fxLayoutAlign="start start" class='filters-container'>
   <mat-accordion>
-    <!-- <mat-expansion-panel *ngIf="showSorts">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Name
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <mat-select [(ngModel)]="productSorts.name">
-          <mat-option [value]="'ASC'">ASC</mat-option>
-          <mat-option [value]="'DESC'">DESC</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button mat-raised-button (click)="addSort('name')">Ok</button>
-    </mat-expansion-panel> -->
-
     <mat-expansion-panel *ngIf="showSorts">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -147,7 +129,7 @@
           <mat-option [value]="'DESC'">DESC</mat-option>
         </mat-select>
       </mat-form-field>
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productSorts.price">
           <button mat-raised-button (click)="addSort('price')">Ok</button>
       </div>
     </mat-expansion-panel>
@@ -167,7 +149,7 @@
         </mat-select>
       </mat-form-field>
 
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="productSorts.quantity">
           <button mat-raised-button (click)="addSort('quantity')">Ok</button>
       </div>
     </mat-expansion-panel>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './product.model';
 import { Observable } from 'rxjs';
+import { post } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,12 @@ export class ProductsService {
   public getProduct(productId): Observable<Product> {
       return this.httpClient.get<Product>(`${this.SERVER_URL + 'products'}/${productId}`);
   }
+
   public createProduct(product: Product) {
-     return this.httpClient.post(`${this.SERVER_URL + 'products'}`, product);
+     return this.httpClient.post<Product>(`${this.SERVER_URL + 'products'}`, product);
   }
 
   public updateProduct(product: Product) {
-     return this.httpClient.put(`${this.SERVER_URL + 'products'}/${product.id}`, product);
+     return this.httpClient.put<Product>(`${this.SERVER_URL + 'products'}/${product.id}`, product);
   }
 }

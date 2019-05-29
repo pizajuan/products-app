@@ -1,24 +1,36 @@
 <main class="content">
-	<form (ngSubmit)="save()" fxLayout="row" fxLayoutAlign="center center" class="content">
+	<form (ngSubmit)="form.form.valid && onSubmit()" fxLayout="row" fxLayoutAlign="center center" class="content">
     <mat-card #form="ngForm" ngForm>
       <mat-card-title>Product</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
         <mat-form-field>
-          <input [(ngModel)]="product.name" matInput placeholder="Name" name="name" required>
+          <input [(ngModel)]="product.name" matInput placeholder="Name" name="name" #name="ngModel" required>
+          <mat-error *ngIf="name.invalid">
+            Name is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="product.price" matInput placeholder="Price" name="price" required>
+          <input [(ngModel)]="product.price" matInput placeholder="Price" name="price" #price="ngModel" type="number" required>
+          <mat-error *ngIf="price.invalid">
+            Price is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="product.quantity" matInput placeholder="Price" name="quantity" required>
+          <input [(ngModel)]="product.quantity" matInput placeholder="Quantity" name="quantity" #quantity="ngModel" type="number" required>
+          <mat-error *ngIf="quantity.invalid">
+            Quantity is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Availability</mat-label>
-          <mat-select [(ngModel)]="product.availability" name="availability" required>
+          <mat-select [(ngModel)]="product.availability" name="availability" #availability="ngModel" required>
             <mat-option [value]=true>Available</mat-option>
             <mat-option [value]=false>Unavailable</mat-option>
           </mat-select>
+          <mat-error *ngIf="availability.invalid">
+            Availability is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </mat-card-content>
       <mat-divider></mat-divider>
