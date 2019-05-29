@@ -5,7 +5,7 @@
           {{ product.name }}
         </mat-card-title>
         <mat-card-content>
-          <span>{{ product.price }}</span><br>
+          <span>${{ product.price | number }}</span><br>
           <span *ngIf="product.availability">Disponible</span><br *ngIf="product.availability">
           <span *ngIf="!product.availability">No Disponible</span><br *ngIf="!product.availability">
           <span>Quedan {{ product.quantity }} en stock</span><br>

@@ -10,9 +10,16 @@ import {  MatToolbarModule,
           MatMenuModule,
           MatGridListModule,
           MatCardModule,
+          MatChipsModule,
+          MatExpansionModule,
+          MatFormFieldModule,
+          MatInputModule,
+          MatButtonModule,
+          MatSelectModule,
           MatDrawerContainer,
           MatDrawerContent,
           MatDrawer } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 import { MainComponentComponent } from './main-component/main-component.component';
 import { FiltersComponentComponent } from './filters-component/filters-component.component';
 import { ProductsComponentComponent } from './products-component/products-component.component';
@@ -41,6 +48,13 @@ import { DataService } from './data.service';
     MatGridListModule,
     MatCardModule,
     FlexLayoutModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatSelectModule,
     InMemoryWebApiModule.forRoot(DataService)
   ],
   providers: [],

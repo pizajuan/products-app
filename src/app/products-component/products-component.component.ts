@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
-import { Product } from '../product.model';
+import { Product, ProductFilters } from '../product.model';
 @Component({
   selector: 'app-products-component',
   templateUrl: './products-component.component.html',
@@ -9,6 +9,7 @@ import { Product } from '../product.model';
 export class ProductsComponentComponent implements OnInit {
 
   products: Product[] = [];
+  // productFilters: ProductFilters;
 
   constructor(private productsService: ProductsService) { }
 
@@ -22,5 +23,12 @@ export class ProductsComponentComponent implements OnInit {
       console.log('uno:', data);
     });
   }
+
+
+  // multiFilter(array, filters) {
+  //   return array.filter(o =>
+  //       Object.keys(filters).every(k =>
+  //           [].concat(filters[k]).some(v => o[k].includes(v))));
+  // }
 
 }

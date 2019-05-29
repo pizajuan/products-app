@@ -1,3 +1,164 @@
-<p>
-  filters-component works!
-</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <h2>Filters</h2>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" class='filters-container'>
+  <div *ngIf="filterChips.length" class='chips-container'>
+    <mat-chip-list>
+      <mat-chip *ngFor='let filterChip of filterChips' color="primary"
+        [selectable]="false"
+        [removable]="true" (removed)="onRemoveChip(filterChip)">
+        {{filterChip.chipKey}}: {{filterChip.chipValue}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" class='filters-container'>
+  <mat-accordion>
+    <mat-expansion-panel *ngIf="showFilters.name">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Name
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input [(ngModel)]="productFilters.name" matInput placeholder="Name">
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addFilter('name')">Ok</button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="showFilters.price">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Price
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input type="number" [(ngModel)]="productFilters.price.number" matInput placeholder="Price">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Less Or Greater</mat-label>
+        <mat-select [(ngModel)]="productFilters.price.range">
+          <mat-option [value]='"<"'>less than</mat-option>
+          <mat-option [value]='">"'>greater than</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addFilter('price')">Ok</button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="showFilters.quantity">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Quantity
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input type="number" [(ngModel)]="productFilters.quantity.number" matInput placeholder="Quantity">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Less Or Greater</mat-label>
+        <mat-select [(ngModel)]="productFilters.quantity.range">
+          <mat-option [value]='"<"'>less than</mat-option>
+          <mat-option [value]='">"'>greater than</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addFilter('quantity')">Ok</button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="showFilters.availability">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Availability
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-label>Availability</mat-label>
+        <mat-select [(ngModel)]="productFilters.availability">
+          <mat-option [value]=true>true</mat-option>
+          <mat-option [value]=false>false</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addFilter('availability')">Ok</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <h2>Sort By</h2>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" class='filters-container'>
+  <div *ngIf="sortChips.length" class='chips-container'>
+    <mat-chip-list>
+      <mat-chip *ngFor='let sortChip of sortChips' color="primary"
+        [selectable]="false"
+        [removable]="true" (removed)="onRemoveSortChip(sortChip)">
+        {{sortChip.chipKey}}: {{sortChip.chipValue}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" class='filters-container'>
+  <mat-accordion>
+    <mat-expansion-panel *ngIf="showSorts">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Name
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <mat-select [(ngModel)]="productSorts.name">
+          <mat-option [value]="'ASC'">ASC</mat-option>
+          <mat-option [value]="'DESC'">DESC</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addSort('name')">Ok</button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="showSorts">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Price
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <mat-select [(ngModel)]="productSorts.price">
+          <mat-option [value]="'ASC'">ASC</mat-option>
+          <mat-option [value]="'DESC'">DESC</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addSort('price')">Ok</button>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="showSorts">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Quantity
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <mat-select [(ngModel)]="productSorts.quantity">
+          <mat-option [value]="'ASC'">ASC</mat-option>
+          <mat-option [value]="'DESC'">DESC</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="addSort('quantity')">Ok</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
