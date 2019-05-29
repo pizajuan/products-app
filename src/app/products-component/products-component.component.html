@@ -6,9 +6,9 @@
         </mat-card-title>
         <mat-card-content>
           <span>${{ product.price | number }}</span><br>
-          <span *ngIf="product.availability">Disponible</span><br *ngIf="product.availability">
-          <span *ngIf="!product.availability">No Disponible</span><br *ngIf="!product.availability">
-          <span>Quedan {{ product.quantity }} en stock</span><br>
+          <span *ngIf="product.availability">Available</span><br *ngIf="product.availability">
+          <span *ngIf="!product.availability">Unavailable</span><br *ngIf="!product.availability">
+          <span>{{ product.quantity }} left in stock</span><br>
         </mat-card-content>
     </mat-card>
   </div>

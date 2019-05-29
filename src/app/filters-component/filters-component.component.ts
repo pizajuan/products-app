@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductFilters, ProductSorts } from '../product.model';
+import { ProductsComunicationService } from '../products-comunication.service';
 
 interface ISelectedChip {
   chipKey: string;
@@ -30,11 +31,11 @@ export class FiltersComponentComponent implements OnInit {
   showFilters: ShowFilters = {};
   showSorts: boolean = true;
 
-  constructor() { }
+  constructor(
+    private productsComunicationService: ProductsComunicationService,
+    ) { }
 
   ngOnInit() {
-    // this.selectedChips = [{chipKey: 'quantity', chipValue: 12}, {chipKey: 'availability', chipValue: true}];
-    // this.sortChips = [{chipKey: 'quantity', chipValue: 'ASC'}, {chipKey: 'name', chipValue: 'DESC'}];
     this.initializeShowFilters();
     this.initializeProductFilters();
   }
@@ -52,7 +53,6 @@ export class FiltersComponentComponent implements OnInit {
   }
 
   onRemoveChip(chip: ISelectedChip) {
-    console.log('elimino esta chip', chip);
     this.filterChips = this.filterChips.filter(x => x.chipKey !== chip.chipKey);
     if (chip.chipKey === 'quantity' || chip.chipKey === 'price' ) {
       this.productFilters[chip.chipKey] = {};
@@ -60,12 +60,10 @@ export class FiltersComponentComponent implements OnInit {
       delete this.productFilters[chip.chipKey];
     }
     this.showFilters[chip.chipKey] = true;
-    console.log('product filters', this.productFilters);
+    this.productsComunicationService.productFiltersChanged(this.productFilters);
   }
 
   addFilter(chipKeyIn) {
-    console.log(chipKeyIn);
-    console.log('product filters', this.productFilters);
     if (chipKeyIn === 'quantity' || chipKeyIn === 'price' ) {
       const chipValueShow = this.productFilters[chipKeyIn].range + '' + this.productFilters[chipKeyIn].number;
       this.filterChips.push({chipKey: chipKeyIn, chipValue: chipValueShow });
@@ -73,19 +71,19 @@ export class FiltersComponentComponent implements OnInit {
       this.filterChips.push({chipKey: chipKeyIn, chipValue: this.productFilters[chipKeyIn]});
     }
     this.showFilters[chipKeyIn] = false;
+    this.productsComunicationService.productFiltersChanged(this.productFilters);
   }
 
   addSort(chipKeyIn) {
     this.sortChips.push({chipKey: chipKeyIn, chipValue: this.productSorts[chipKeyIn]});
-    console.log('product sorts', this.productSorts);
     this.showSorts = false;
+    this.productsComunicationService.productSortsChanged(this.productSorts);
   }
 
   onRemoveSortChip(chip: ISelectedChip) {
-    console.log('elimino esta chip', chip);
     this.sortChips = this.sortChips.filter(x => x.chipKey !== chip.chipKey);
     delete this.productSorts[chip.chipKey];
     this.showSorts = true;
-    console.log('product sorts', this.sortChips);
+    this.productsComunicationService.productSortsChanged(this.productSorts);
   }
 }

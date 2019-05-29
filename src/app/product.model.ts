@@ -13,7 +13,6 @@ export interface ProductFilters {
 
 
 export interface ProductSorts {
-  name?: 'ASC' | 'DESC';
   quantity?: 'ASC' | 'DESC';
   price?: 'ASC' | 'DESC';
 }
