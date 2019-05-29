@@ -26,6 +26,7 @@ import { ProductsComponentComponent } from './products-component/products-compon
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.service';
+import { ProductEditComponent } from './products-component/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DataService } from './data.service';
     ProductsComponentComponent,
     MatDrawerContainer,
     MatDrawerContent,
-    MatDrawer
+    MatDrawer,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
